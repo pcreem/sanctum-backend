@@ -20,6 +20,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 // Route::apiResource('books', BookController::class);
-Route::get('books',[BookController::class, 'index']);
+Route::middleware('auth:sanctum')->get('books',[BookController::class, 'index']);
 
 
