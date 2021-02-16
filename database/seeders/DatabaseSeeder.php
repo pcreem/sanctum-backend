@@ -2,7 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Book;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +16,21 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        Book::truncate();
+        $faker = \Faker\Factory::create();
+        for ($i = 0; $i < 50; $i++) {
+            Book::create([
+                'title' => $faker->sentence,
+                'author' => $faker->name,
+            ]);
+        }
+        User::truncate();
+        User::create([
+            'name' => 'qwe',
+            'email' => 'qwe@qwe.com',
+            'password' => Hash::make('1234'),
+        ]);
+        
+        
     }
 }
